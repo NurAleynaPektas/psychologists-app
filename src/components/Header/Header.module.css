@@ -1,10 +1,15 @@
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background: white;
+  width: 100%;
+  padding: 16px 24px;
+  background-color: #fff;
   border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
 }
 
 .logo {
@@ -20,32 +25,147 @@
 
 .nav {
   display: flex;
-  gap: 20px;
+  gap: 24px;
 }
 
 .nav a {
   text-decoration: none;
   color: var(--text-main);
   font-weight: 500;
+  font-size: 15px;
+}
+
+.nav a.active {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 2px;
 }
 
 .actions {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 12px;
 }
 
 .loginBtn,
 .registerBtn {
-  padding: 8px 16px;
-  border-radius: 20px;
-  cursor: pointer;
+  padding: 6px 14px;
+  border-radius: 999px;
   border: 1px solid var(--primary);
-  background: transparent;
+  background-color: transparent;
   color: var(--primary);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .registerBtn {
-  background: var(--primary);
-  color: white;
-  border: none;
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.loginBtn:hover {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.user {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+/* THEME BUTTON */
+.themeBtn {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--primary);
+  background: transparent;
+  color: var(--primary);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.themeBtn:hover {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1024px) {
+  .nav {
+    gap: 16px;
+  }
+
+  .actions {
+    gap: 8px;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 12px 16px;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .nav {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .actions {
+    order: 2;
+    width: auto;
+    justify-content: flex-end;
+  }
+
+  .loginBtn,
+  .registerBtn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .themeBtn {
+    padding: 5px 12px;
+    font-size: 12px;
+  }
+
+  .user {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav {
+    gap: 12px;
+  }
+
+  .loginBtn,
+  .registerBtn {
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+
+  .themeBtn {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+
+  .user {
+    font-size: 12px;
+  }
+
+  .logo {
+    font-size: 17px;
+  }
 }

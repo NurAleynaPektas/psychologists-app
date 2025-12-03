@@ -5,11 +5,13 @@ import Modal from "../UI/Modal";
 import LoginForm from "../Auth/LoginForm";
 import RegisterForm from "../Auth/RegisterForm";
 import { useAuth } from "../../context/AuthContext";
+import { useTheme } from "../../context/ThemeContext";
 
 export default function Header() {
-  const [modalType, setModalType] = useState(null); // 'login' | 'register' | null
+  const [modalType, setModalType] = useState(null); 
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const { theme, setTheme } = useTheme();
 
   const openLogin = () => setModalType("login");
   const openRegister = () => setModalType("register");
@@ -30,6 +32,15 @@ export default function Header() {
     navigate("/");
   };
 
+  const cycleTheme = () => {
+    if (theme === "orange") setTheme("blue");
+    else if (theme === "blue") setTheme("green");
+    else setTheme("orange");
+  };
+
+  const themeLabel =
+    theme === "orange" ? "Orange" : theme === "blue" ? "Blue" : "Green";
+
   return (
     <>
       <header className={styles.header}>
@@ -44,6 +55,14 @@ export default function Header() {
         </nav>
 
         <div className={styles.actions}>
+          <button
+            className={styles.themeBtn}
+            type="button"
+            onClick={cycleTheme}
+          >
+            Theme: {themeLabel}
+          </button>
+
           {user ? (
             <>
               <span className={styles.user}>
