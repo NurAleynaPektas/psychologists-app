@@ -1,0 +1,97 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.title {
+  margin: 0;
+  font-size: 28px;
+}
+
+.subtitle {
+  margin: 4px 0 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.sortBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sortLabel {
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+.sortSelect {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  font-size: 13px;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.content {
+  padding: 16px;
+  border-radius: 20px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.loadMoreBtn {
+  margin-top: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid var(--primary);
+  background-color: var(--primary);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.loadMoreBtn:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .content {
+    padding: 12px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .header {
+    align-items: flex-start;
+  }
+
+  .sortBox {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
