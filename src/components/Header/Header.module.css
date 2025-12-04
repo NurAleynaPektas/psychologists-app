@@ -9,8 +9,6 @@
   position: sticky;
   top: 0;
   z-index: 20;
-  
-  
 }
 
 /* LOGO */
@@ -35,7 +33,7 @@
 .nav a {
   font-style: regular;
   text-decoration: none;
-  color:#191A15;
+  color: #191a15;
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
@@ -48,7 +46,7 @@
 
 /* Aktif link  */
 .nav a.active {
-  color: #FC832C;
+  color: #fc832c;
 }
 
 .nav a.active::after {
@@ -83,6 +81,7 @@
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
+
 }
 
 .loginBtn:hover {
@@ -90,7 +89,8 @@
 }
 
 /* Registration – turuncu pill */
-.registerBtn { width: 124px;
+.registerBtn {
+  width: 124px;
   height: 48px;
   padding: 8px 22px;
   border-radius: 999px;
@@ -102,7 +102,7 @@
   font-weight: 500;
 }
 
-/* Kullanıcı ismi + ikon (JSX değiştirmeden) */
+/* Kullanıcı ismi + ikon */
 .user {
   display: flex;
   align-items: center;
@@ -123,8 +123,7 @@
   justify-content: center;
 }
 
-
-/* THEME BUTTON – daha sade dursun */
+/* THEME BUTTON */
 .themeBtn {
   padding: 6px 10px;
   border-radius: 999px;
@@ -141,9 +140,132 @@
   color: var(--primary);
 }
 
-/* ===================== */
-/*      RESPONSIVE       */
-/* ===================== */
+
+/*  HAMBURGER ICON  */
+
+.menuToggle {
+  display: none; 
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.menuIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 4px rgba(15, 23, 42, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.menuIcon span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: #191a15;
+  border-radius: 999px;
+  transition: transform 0.2s ease, opacity 0.2s ease, width 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.menuToggleOpen .menuIcon span:nth-child(1) {
+  transform: translateY(4px) rotate(45deg);
+  width: 20px;
+  background: #fc832c;
+}
+
+.menuToggleOpen .menuIcon span:nth-child(2) {
+  opacity: 0;
+}
+
+.menuToggleOpen .menuIcon span:nth-child(3) {
+  transform: translateY(-4px) rotate(-45deg);
+  width: 20px;
+  background: #fc832c;
+}
+
+/*    DRAWER PANEL   */
+
+.drawerBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px);
+  z-index: 40;
+  
+}
+
+.drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 240px;
+  height: 100vh;
+  background: #ffffff;
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: drawerSlide 0.3s ease forwards;
+}
+
+@keyframes drawerSlide {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Mobil iç nav */
+.mobileNav {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mobileNav a {
+  text-decoration: none;
+  font-size: 16px;
+  color: #191a15;
+}
+
+.mobileNav a.active {
+  color: #fc832c;
+}
+
+/* Mobil actions */
+.mobileActions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto; 
+}
+
+.mobileUserRow,
+.mobileAuthButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+/*  RESPONSIVE  */
+
 
 @media (max-width: 1024px) {
   .header {
@@ -157,36 +279,46 @@
 
   .logo {
     font-size: 18px;
+    margin-left: 0;
+  }
+
+  .actions {
+    margin-right: 0;
   }
 }
 
 @media (max-width: 768px) {
   .header {
     padding: 12px 16px;
-    flex-wrap: wrap;
     gap: 14px;
+    justify-content: space-between;
   }
 
-  .nav {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-    gap: 20px;
-  }
-
+ 
+  .nav,
   .actions {
-    order: 2;
-    width: auto;
-    justify-content: flex-end;
+    display: none;
+  }
+
+  .menuToggle {
+    display: block;
+  }
+
+  .logo {
+    font-size: 18px;
   }
 
   .loginBtn,
   .registerBtn {
+    width: 100%;
+    height: 44px;
     padding: 6px 12px;
     font-size: 13px;
+    margin-bottom: 20px;
   }
 
   .themeBtn {
+    align-self: flex-start;
     padding: 4px 10px;
     font-size: 11px;
   }
@@ -197,17 +329,16 @@
 }
 
 @media (max-width: 480px) {
-  .nav {
-    gap: 12px;
-  }
-
-  .loginBtn,
-  .registerBtn {
-    padding: 4px 10px;
-    font-size: 12px;
-  }
-
   .logo {
     font-size: 17px;
+  }
+
+  .mobileNav a {
+    font-size: 14px;
+  }
+
+  .drawer {
+    width:200px;
+    padding-inline: 16px;
   }
 }
