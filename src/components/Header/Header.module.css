@@ -1,107 +1,160 @@
 .header {
   width: 100%;
-  padding: 16px 24px;
+  padding: 16px 40px;
   background-color: #fff;
-  border-bottom: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 32px;
   position: sticky;
   top: 0;
   z-index: 20;
+  
+  
 }
 
+/* LOGO */
 .logo {
   font-size: 20px;
   font-weight: 700;
   text-decoration: none;
-  color: var(--text-main);
+  color: var(--primary);
+  margin-left: 128px;
 }
 
 .logo span {
-  color: var(--primary);
+  color: #191a15;
 }
 
+/* NAV */
 .nav {
   display: flex;
-  gap: 24px;
+  gap: 32px;
 }
 
 .nav a {
+  font-style: regular;
   text-decoration: none;
-  color: var(--text-main);
-  font-weight: 500;
-  font-size: 15px;
+  color:#191A15;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  position: relative;
 }
 
+.nav a:hover {
+  color: #191a15;
+}
+
+/* Aktif link  */
 .nav a.active {
-  color: var(--primary);
-  border-bottom: 2px solid var(--primary);
-  padding-bottom: 2px;
+  color: #FC832C;
 }
 
+.nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -6px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--primary);
+}
+
+/* ACTIONS (buttons + user) */
 .actions {
   display: flex;
   align-items: center;
   gap: 12px;
+  margin-right: 128px;
 }
 
-.loginBtn,
-.registerBtn {
-  padding: 6px 14px;
-  border-radius: 999px;
-  border: 1px solid var(--primary);
-  background-color: transparent;
-  color: var(--primary);
+/* Login & Logout */
+.loginBtn {
+  width: 124px;
+  height: 48px;
+  padding: 8px 18px;
+  border-radius: 30px;
+  border: 1px solid #d7d7d7;
+  background-color: #ffffff;
+  color: #191a15;
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
-}
-
-.registerBtn {
-  background-color: var(--primary);
-  color: #fff;
 }
 
 .loginBtn:hover {
-  background-color: var(--primary);
-  color: #fff;
+  border-color: var(--primary);
 }
 
-.user {
+/* Registration – turuncu pill */
+.registerBtn { width: 124px;
+  height: 48px;
+  padding: 8px 22px;
+  border-radius: 999px;
+  border: none;
+  background-color: var(--primary);
+  color: #ffffff;
+  cursor: pointer;
   font-size: 14px;
   font-weight: 500;
-  color: var(--text-main);
 }
 
-/* THEME BUTTON */
+/* Kullanıcı ismi + ikon (JSX değiştirmeden) */
+.user {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #191a15;
+}
+
+/* Soldaki turuncu user ikonu */
+.user::before {
+  content: "👤";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background-color: var(--primary);
+  color: #ffffff;
+  font-size: 16px;
+}
+
+/* THEME BUTTON – daha sade dursun */
 .themeBtn {
-  padding: 6px 12px;
-  border-radius: 20px;
-  border: 1px solid var(--primary);
-  background: transparent;
-  color: var(--primary);
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #6b7280;
   cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .themeBtn:hover {
-  background-color: var(--primary);
-  color: #fff;
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
-
-/* RESPONSIVE */
+/* ===================== */
+/*      RESPONSIVE       */
+/* ===================== */
 
 @media (max-width: 1024px) {
-  .nav {
-    gap: 16px;
+  .header {
+    padding: 12px 24px;
+    gap: 20px;
   }
 
-  .actions {
-    gap: 8px;
+  .nav {
+    gap: 20px;
   }
 
   .logo {
@@ -136,8 +189,8 @@
   }
 
   .themeBtn {
-    padding: 5px 12px;
-    font-size: 12px;
+    padding: 4px 10px;
+    font-size: 11px;
   }
 
   .user {
@@ -153,15 +206,6 @@
   .loginBtn,
   .registerBtn {
     padding: 4px 10px;
-    font-size: 12px;
-  }
-
-  .themeBtn {
-    padding: 4px 10px;
-    font-size: 11px;
-  }
-
-  .user {
     font-size: 12px;
   }
 

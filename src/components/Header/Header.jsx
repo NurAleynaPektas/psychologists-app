@@ -60,7 +60,7 @@ export default function Header() {
             type="button"
             onClick={cycleTheme}
           >
-            Theme: {themeLabel}
+             {themeLabel}
           </button>
 
           {user ? (
