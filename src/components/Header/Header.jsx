@@ -60,14 +60,31 @@ export default function Header() {
             type="button"
             onClick={cycleTheme}
           >
-             {themeLabel}
+            {themeLabel}
           </button>
 
           {user ? (
             <>
               <span className={styles.user}>
-                Hi, {user.displayName || user.email}
+                <span className={styles.userIcon}>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#fff"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M20 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M7 17.13A4 4 0 0 0 4 21v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                </span>
+                 {user.displayName || user.email}
               </span>
+
               <button
                 className={styles.loginBtn}
                 type="button"
