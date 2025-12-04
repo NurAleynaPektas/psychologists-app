@@ -1,43 +1,57 @@
 import styles from "./Home.module.css";
 import { useNavigate } from "react-router-dom";
+import psyHome from "../../assets/psyHome.png";
 
 export default function Home() {
   const navigate = useNavigate();
 
-  const handleGetStarted = () => {
-    navigate("/psychologists");
-  };
-
   return (
     <section className={styles.hero}>
       <div className={styles.left}>
-        <p className={styles.badge}>Psychologists services</p>
-
         <h1 className={styles.title}>
           The road to the <span>depths</span> of the human soul
         </h1>
 
         <p className={styles.subtitle}>
-          We help you find a licensed psychologist who understands you and
-          supports your mental health journey.
+          We help you to reveal your potential, overcome challenges and find a
+          guide in your own life with the help of our experienced psychologists.
         </p>
 
-        <button className={styles.cta} onClick={handleGetStarted}>
+        <button
+          className={styles.cta}
+          onClick={() => navigate("/psychologists")}
+        >
           Get started
+          <svg
+            className={styles.arrow}
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M5 12h14M13 6l6 6-6 6"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         </button>
-
-        <p className={styles.note}>
-          Start your first consultation today and take care of your inner world.
-        </p>
       </div>
 
       <div className={styles.right}>
-        <div className={styles.mockCard}>
-          <p className={styles.mockLabel}>15,000 experienced psychologists</p>
-          <p className={styles.mockText}>
-            Choose from a wide range of specialists for online or offline
-            sessions.
-          </p>
+        <img src={psyHome} alt="Psychologist" className={styles.heroImage} />
+
+        <div className={styles.expertBox}>
+          <div className={styles.expertIcon}>
+            <span className={styles.check}>✓</span>
+          </div>
+
+          <div className={styles.expertText}>
+            <p className={styles.expTitle}>Experienced psychologists</p>
+            <p className={styles.expNumber}>15,000</p>
+          </div>
         </div>
       </div>
     </section>
