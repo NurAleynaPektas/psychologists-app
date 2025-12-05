@@ -61,7 +61,11 @@ export default function PsychologistCard({ psychologist }) {
         <div className={styles.topRow}>
           <div className={styles.left}>
             <div className={styles.avatarWrapper}>
-              <div className={styles.avatar} />
+              <img
+                src={psychologist.avatar_url}
+                alt={name}
+                className={styles.avatarImg}
+              />
             </div>
 
             <div className={styles.mainInfo}>
@@ -155,7 +159,6 @@ export default function PsychologistCard({ psychologist }) {
           </div>
         )}
 
-        
         <div className={styles.bottomRow}>
           <button
             className={styles.readMoreBtn}
