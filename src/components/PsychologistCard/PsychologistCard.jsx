@@ -143,14 +143,17 @@ export default function PsychologistCard({ psychologist }) {
                       </span>
                       {rev.rating && (
                         <span className={styles.reviewRating}>
-                          ★ {rev.rating}
+                          <span className={styles.reviewStar}> ★</span>{" "}
+                          {rev.rating}
                         </span>
                       )}
                     </div>
                   </div>
-                  {rev.comment && (
-                    <p className={styles.reviewComment}>{rev.comment}</p>
-                  )}
+                  <div>
+                    {rev.comment && (
+                      <p className={styles.reviewComment}>{rev.comment}</p>
+                    )}
+                  </div>
                 </li>
               ))}
             </ul>
