@@ -103,26 +103,22 @@ export default function PsychologistCard({ psychologist }) {
 
           <div className={styles.right}>
             <div className={styles.infoRow}>
-              <span className={styles.infoLabel}>Rating:</span>
-              <span className={styles.infoValue}>
-                ★ {rating} ({reviewsCount} reviews)
+              <span className={styles.infoLabel}>
+                <span className={styles.infoStar}>★</span> Rating:
               </span>
-            </div>
-
-            <div className={styles.infoRow}>
+              <span className={styles.infoValue}>{rating}</span>
               <span className={styles.infoLabel}>Price / 1 hour:</span>
               <span className={styles.infoPrice}>{price_per_hour}$</span>
+              <button
+                className={`${styles.heartBtn} ${
+                  favorite ? styles.heartActive : ""
+                }`}
+                type="button"
+                onClick={handleHeartClick}
+              >
+                {favorite ? "♥" : "♡"}
+              </button>
             </div>
-
-            <button
-              className={`${styles.heartBtn} ${
-                favorite ? styles.heartActive : ""
-              }`}
-              type="button"
-              onClick={handleHeartClick}
-            >
-              {favorite ? "♥" : "♡"}
-            </button>
           </div>
         </div>
 

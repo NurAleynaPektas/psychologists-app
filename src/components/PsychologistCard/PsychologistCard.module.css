@@ -101,29 +101,29 @@
 
 .infoRow {
   display: flex;
+  align-items: center;
   gap: 4px;
   font-size: 13px;
-}
-
-.infoLabel {
-  color: var(--text-soft);
-}
-
-.infoValue {
-  font-weight: 600;
+  color: #191A15;
+  font-weight: 500;
 }
 
 .infoPrice {
   font-weight: 600;
-  color: #059669;
+  color: #19e70a;
 }
-
+.infoStar{
+  width: 16px;
+  height: 16px;
+  color:#FFC531;
+}
 .heartBtn {
   margin-top: 8px;
   border: none;
   background: transparent;
   cursor: pointer;
   font-size: 22px;
+  margin-bottom: 10px;
 }
 
 .about {
