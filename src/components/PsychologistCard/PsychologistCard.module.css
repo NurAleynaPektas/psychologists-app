@@ -63,8 +63,25 @@
 .metaRow {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  font-size: 13px;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.metaChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  background: var(--bg-muted);
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--text-soft);
+  font-weight: 400;
+}
+
+.metaChip span {
+  color: var(--text-main);
+  font-weight: 500;
+  margin-left: 4px;
 }
 
 .metaItem {

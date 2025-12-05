@@ -75,29 +75,27 @@ export default function PsychologistCard({ psychologist }) {
               </div>
 
               <div className={styles.metaRow}>
-                <span className={styles.metaItem}>
-                  Experience:{" "}
-                  <span className={styles.metaAccent}>{experience} years</span>
+                <span className={styles.metaChip}>
+                  Experience: <span>{experience} years</span>
                 </span>
 
                 {license && (
-                  <span className={styles.metaItem}>
-                    License:{" "}
-                    <span className={styles.metaAccent}>{license}</span>
+                  <span className={styles.metaChip}>
+                    License: <span>{license}</span>
                   </span>
                 )}
               </div>
 
-              <div className={styles.chipRow}>
+              <div className={styles.metaRow}>
                 {specialization && (
-                  <span className={styles.chipPrimary}>
-                    Specialization: {specialization}
+                  <span className={styles.metaChip}>
+                    Specialization: <span>{specialization}</span>
                   </span>
                 )}
 
                 {initial_consultation && (
-                  <span className={styles.chipMuted}>
-                    Initial consultation: {initial_consultation}
+                  <span className={styles.metaChip}>
+                    Initial consultation: <span>{initial_consultation}</span>
                   </span>
                 )}
               </div>
