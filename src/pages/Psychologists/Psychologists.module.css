@@ -25,8 +25,9 @@
 
 .sortBox {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 8px;
+ 
 }
 
 .sortLabel {
@@ -35,11 +36,20 @@
 }
 
 .sortSelect {
-  padding: 6px 10px;
-  border-radius: 999px;
+  padding: 14px 10px;
+  border-radius: 14px;
   border: 1px solid var(--border-subtle);
+  font-size: 14px;
+  background-color: var(--primary);
+  color: #fff;
+  cursor: pointer;
+}
+.sortSelect option {
+  padding: 14px 10px;
+  border-radius: 14px;
   font-size: 13px;
-  background-color: #ffffff;
+  background-color: #fff;
+  color: black;
   cursor: pointer;
 }
 

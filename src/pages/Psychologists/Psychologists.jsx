@@ -92,16 +92,11 @@ export default function Psychologists() {
   return (
     <section className={styles.wrapper}>
       <header className={styles.header}>
-        <div>
-          <h1 className={styles.title}>Psychologists</h1>
-          <p className={styles.subtitle}>
-            Browse the list of psychologists, apply filters and add favorites.
-          </p>
-        </div>
+        
 
         <div className={styles.sortBox}>
           <label className={styles.sortLabel} htmlFor="sort">
-            Sort by:
+            Filters
           </label>
           <select
             id="sort"
@@ -109,12 +104,12 @@ export default function Psychologists() {
             value={sortOption}
             onChange={handleSortChange}
           >
-            <option value="name-asc">Name (A–Z)</option>
-            <option value="name-desc">Name (Z–A)</option>
+            <option value="name-asc">A to Z</option>
+            <option value="name-desc">Z to A</option>
             <option value="price-asc">Price (low to high)</option>
             <option value="price-desc">Price (high to low)</option>
-            <option value="rating-asc">Rating (low to high)</option>
-            <option value="rating-desc">Rating (high to low)</option>
+            <option value="rating-asc">Not popular (low to high)</option>
+            <option value="rating-desc">Popular (high to low)</option>
           </select>
         </div>
       </header>
