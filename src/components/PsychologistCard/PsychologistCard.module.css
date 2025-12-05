@@ -273,6 +273,68 @@
   color: var(--text-main);
   line-height: 1.4;
 }
+.cardExpanded {
+  padding-bottom: 32px;
+}
+
+.reviewsSection {
+  margin-top: 16px;
+}
+
+.reviewsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reviewItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.reviewTop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reviewerBadge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(252, 131, 44, 0.12);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.reviewHeaderText {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.reviewerName {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.reviewRating {
+  font-size: 13px;
+  color: #fbbf24;
+}
+
+.reviewComment {
+  font-size: 13px;
+  color: #4b5563;
+  margin: 0 0 0 42px;
+}
 
 /* Responsive */
 @media (max-width: 768px) {

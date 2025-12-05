@@ -8,7 +8,8 @@ import AppointmentForm from "../Appointment/AppointmentForm";
 export default function PsychologistCard({ psychologist }) {
   const { user } = useAuth();
   const { isFavorite, toggleFavorite } = useFavorites();
-  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+
+  const [isExpanded, setIsExpanded] = useState(false);
   const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
 
   if (!psychologist || typeof psychologist !== "object") {
@@ -27,12 +28,6 @@ export default function PsychologistCard({ psychologist }) {
     reviews = [],
   } = psychologist;
 
-  const reviewsCount = Array.isArray(reviews)
-    ? reviews.length
-    : typeof reviews === "number"
-    ? reviews
-    : 0;
-
   const favorite = isFavorite(psychologist);
 
   const handleHeartClick = () => {
@@ -43,8 +38,9 @@ export default function PsychologistCard({ psychologist }) {
     toggleFavorite(psychologist);
   };
 
-  const openDetails = () => setIsDetailsOpen(true);
-  const closeDetails = () => setIsDetailsOpen(false);
+  const toggleDetails = () => {
+    setIsExpanded((prev) => !prev);
+  };
 
   const openAppointment = () => {
     if (!user) {
@@ -58,7 +54,10 @@ export default function PsychologistCard({ psychologist }) {
 
   return (
     <>
-      <article className={styles.card}>
+      <article
+        className={`${styles.card} ${isExpanded ? styles.cardExpanded : ""}`}
+      >
+        {/* ÜST SATIR */}
         <div className={styles.topRow}>
           <div className={styles.left}>
             <div className={styles.avatarWrapper}>
@@ -109,6 +108,7 @@ export default function PsychologistCard({ psychologist }) {
               <span className={styles.infoValue}>{rating}</span>
               <span className={styles.infoLabel}>Price / 1 hour:</span>
               <span className={styles.infoPrice}>{price_per_hour}$</span>
+
               <button
                 className={`${styles.heartBtn} ${
                   favorite ? styles.heartActive : ""
@@ -122,73 +122,20 @@ export default function PsychologistCard({ psychologist }) {
           </div>
         </div>
 
+        {/* KISA AÇIKLAMA  */}
         {about && <p className={styles.about}>{about}</p>}
 
-        <div className={styles.bottomRow}>
-          <button
-            className={styles.readMoreBtn}
-            type="button"
-            onClick={openDetails}
-          >
-            Read more
-          </button>
-
-          <button
-            className={styles.appointmentBtn}
-            type="button"
-            onClick={openAppointment}
-          >
-            Make an appointment
-          </button>
-        </div>
-      </article>
-
-      {/* READ MORE MODAL */}
-      <Modal isOpen={isDetailsOpen} onClose={closeDetails} title={name}>
-        <div className={styles.details}>
-          <div className={styles.detailsHeader}>
-            <p className={styles.detailsRole}>Psychologist</p>
-            <h2 className={styles.detailsName}>{name}</h2>
-
-            <div className={styles.detailsMetaRow}>
-              <span className={styles.detailsMetaItem}>
-                Experience:{" "}
-                <span className={styles.detailsMetaAccent}>
-                  {experience} years
-                </span>
-              </span>
-
-              {license && (
-                <span className={styles.detailsMetaItem}>
-                  License:{" "}
-                  <span className={styles.detailsMetaAccent}>{license}</span>
-                </span>
-              )}
-            </div>
-
-            <div className={styles.detailsChipRow}>
-              {specialization && (
-                <span className={styles.chipPrimary}>
-                  Specialization: {specialization}
-                </span>
-              )}
-              {initial_consultation && (
-                <span className={styles.chipMuted}>
-                  Initial consultation: {initial_consultation}
-                </span>
-              )}
-            </div>
-          </div>
-
-          {about && <p className={styles.detailsAbout}>{about}</p>}
-
-          {Array.isArray(reviews) && reviews.length > 0 && (
-            <div className={styles.reviewsSection}>
-              <h3 className={styles.reviewsTitle}>Reviews</h3>
-              <ul className={styles.reviewsList}>
-                {reviews.map((rev, index) => (
-                  <li key={index} className={styles.reviewItem}>
-                    <div className={styles.reviewTop}>
+        {/* READ MORE SONRASI AÇILAN KISIM */}
+        {isExpanded && Array.isArray(reviews) && reviews.length > 0 && (
+          <div className={styles.reviewsSection}>
+            <ul className={styles.reviewsList}>
+              {reviews.map((rev, index) => (
+                <li key={index} className={styles.reviewItem}>
+                  <div className={styles.reviewTop}>
+                    <span className={styles.reviewerBadge}>
+                      {rev.reviewer?.[0] || "U"}
+                    </span>
+                    <div className={styles.reviewHeaderText}>
                       <span className={styles.reviewerName}>
                         {rev.reviewer || "Anonymous"}
                       </span>
@@ -198,18 +145,39 @@ export default function PsychologistCard({ psychologist }) {
                         </span>
                       )}
                     </div>
-                    {rev.comment && (
-                      <p className={styles.reviewComment}>{rev.comment}</p>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
+                  </div>
+                  {rev.comment && (
+                    <p className={styles.reviewComment}>{rev.comment}</p>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        
+        <div className={styles.bottomRow}>
+          <button
+            className={styles.readMoreBtn}
+            type="button"
+            onClick={toggleDetails}
+          >
+            {isExpanded ? "Hide" : "Read more"}
+          </button>
+
+          {isExpanded && (
+            <button
+              className={styles.appointmentBtn}
+              type="button"
+              onClick={openAppointment}
+            >
+              Make an appointment
+            </button>
           )}
         </div>
-      </Modal>
+      </article>
 
-      {/* APPOINTMENT MODAL */}
+      {/* APPOINTMENT MODAL*/}
       <Modal
         isOpen={isAppointmentOpen}
         onClose={closeAppointment}
