@@ -31,25 +31,27 @@
 }
 
 .nav a {
-  font-style: regular;
+  font-style: normal;
   text-decoration: none;
   color: #191a15;
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
-  position: relative;
+  position: relative; /* nokta için gerekli */
 }
 
 .nav a:hover {
   color: #191a15;
 }
 
-/* Aktif link  */
-.nav a.active {
+/* Aktif link class'ı (CSS Modules ile) */
+.activeLink {
   color: #fc832c;
 }
 
-.nav a.active::after {
+/* Aktif link altındaki nokta (desktop + mobile) */
+.nav a.activeLink::after,
+.mobileNav a.activeLink::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -81,7 +83,6 @@
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
-
 }
 
 .loginBtn:hover {
@@ -144,7 +145,7 @@
 /*  HAMBURGER ICON  */
 
 .menuToggle {
-  display: none; 
+  display: none;
   padding: 0;
   margin: 0;
   border: none;
@@ -176,7 +177,6 @@
     background 0.2s ease;
 }
 
-
 .menuToggleOpen .menuIcon span:nth-child(1) {
   transform: translateY(4px) rotate(45deg);
   width: 20px;
@@ -204,7 +204,6 @@
   background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(2px);
   z-index: 40;
-  
 }
 
 .drawer {
@@ -242,10 +241,7 @@
   text-decoration: none;
   font-size: 16px;
   color: #191a15;
-}
-
-.mobileNav a.active {
-  color: #fc832c;
+  position: relative; /* nokta için */
 }
 
 /* Mobil actions */
@@ -253,7 +249,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-top: auto; 
+  margin-top: auto;
 }
 
 .mobileUserRow,
@@ -265,7 +261,6 @@
 
 
 /*  RESPONSIVE  */
-
 
 @media (max-width: 1024px) {
   .header {
@@ -294,7 +289,6 @@
     justify-content: space-between;
   }
 
- 
   .nav,
   .actions {
     display: none;
@@ -338,7 +332,7 @@
   }
 
   .drawer {
-    width:200px;
+    width: 200px;
     padding-inline: 16px;
   }
 }

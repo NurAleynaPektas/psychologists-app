@@ -64,13 +64,27 @@ export default function Header() {
 
         {/* DESKTOP NAV */}
         <nav className={styles.nav}>
-          <NavLink to="/" onClick={closeMenu}>
+          <NavLink
+            to="/"
+            onClick={closeMenu}
+            className={({ isActive }) => (isActive ? styles.activeLink : "")}
+          >
             Home
           </NavLink>
-          <NavLink to="/psychologists" onClick={closeMenu}>
+
+          <NavLink
+            to="/psychologists"
+            onClick={closeMenu}
+            className={({ isActive }) => (isActive ? styles.activeLink : "")}
+          >
             Psychologists
           </NavLink>
-          <NavLink to="/favorites" onClick={closeMenu}>
+
+          <NavLink
+            to="/favorites"
+            onClick={closeMenu}
+            className={({ isActive }) => (isActive ? styles.activeLink : "")}
+          >
             Favorites
           </NavLink>
         </nav>
@@ -157,13 +171,27 @@ export default function Header() {
         <div className={styles.drawerBackdrop} onClick={closeMenu}>
           <div className={styles.drawer} onClick={(e) => e.stopPropagation()}>
             <nav className={styles.mobileNav}>
-              <NavLink to="/" onClick={closeMenu}>
+              <NavLink
+                to="/"
+                onClick={closeMenu}
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
                 Home
               </NavLink>
-              <NavLink to="/psychologists" onClick={closeMenu}>
+
+              <NavLink
+                to="/psychologists"
+                onClick={closeMenu}
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
                 Psychologists
               </NavLink>
-              <NavLink to="/favorites" onClick={closeMenu}>
+
+              <NavLink
+                to="/favorites"
+                onClick={closeMenu}
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
                 Favorites
               </NavLink>
             </nav>
