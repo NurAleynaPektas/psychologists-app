@@ -12,9 +12,7 @@ export default function PsychologistCard({ psychologist }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
 
-  if (!psychologist || typeof psychologist !== "object") {
-    return null;
-  }
+  if (!psychologist || typeof psychologist !== "object") return null;
 
   const {
     name = "Unknown",
@@ -38,9 +36,7 @@ export default function PsychologistCard({ psychologist }) {
     toggleFavorite(psychologist);
   };
 
-  const toggleDetails = () => {
-    setIsExpanded((prev) => !prev);
-  };
+  const toggleDetails = () => setIsExpanded((prev) => !prev);
 
   const openAppointment = () => {
     if (!user) {
@@ -108,6 +104,7 @@ export default function PsychologistCard({ psychologist }) {
                 <span className={styles.infoStar}>★</span> Rating:
               </span>
               <span className={styles.infoValue}>{rating}</span>
+
               <span className={styles.infoLabel}>Price / 1 hour:</span>
               <span className={styles.infoPrice}>{price_per_hour}$</span>
 
@@ -124,10 +121,10 @@ export default function PsychologistCard({ psychologist }) {
           </div>
         </div>
 
-        {/* KISA AÇIKLAMA  */}
+        {/* KISA ABOUT */}
         {about && <p className={styles.about}>{about}</p>}
 
-        {/* READ MORE SONRASI AÇILAN KISIM */}
+        {/* READ MORE SONRASI */}
         {isExpanded && Array.isArray(reviews) && reviews.length > 0 && (
           <div className={styles.reviewsSection}>
             <ul className={styles.reviewsList}>
@@ -137,29 +134,38 @@ export default function PsychologistCard({ psychologist }) {
                     <span className={styles.reviewerBadge}>
                       {rev.reviewer?.[0] || "U"}
                     </span>
+
                     <div className={styles.reviewHeaderText}>
                       <span className={styles.reviewerName}>
                         {rev.reviewer || "Anonymous"}
                       </span>
                       {rev.rating && (
                         <span className={styles.reviewRating}>
-                          <span className={styles.reviewStar}> ★</span>{" "}
-                          {rev.rating}
+                          ★ {rev.rating}
                         </span>
                       )}
                     </div>
                   </div>
-                  <div>
-                    {rev.comment && (
-                      <p className={styles.reviewComment}>{rev.comment}</p>
-                    )}
-                  </div>
+
+                  {rev.comment && (
+                    <p className={styles.reviewComment}>{rev.comment}</p>
+                  )}
                 </li>
               ))}
             </ul>
+
+            {/* YORUMLARIN ALTINA ALINAN BUTON */}
+            <button
+              className={styles.appointmentBtn}
+              type="button"
+              onClick={openAppointment}
+            >
+              Make an appointment
+            </button>
           </div>
         )}
 
+        {/* READ MORE BUTTON */}
         <div className={styles.bottomRow}>
           <button
             className={styles.readMoreBtn}
@@ -168,20 +174,10 @@ export default function PsychologistCard({ psychologist }) {
           >
             {isExpanded ? "Hide" : "Read more"}
           </button>
-
-          {isExpanded && (
-            <button
-              className={styles.appointmentBtn}
-              type="button"
-              onClick={openAppointment}
-            >
-              Make an appointment
-            </button>
-          )}
         </div>
       </article>
 
-      {/* APPOINTMENT MODAL*/}
+      {/* APPOINTMENT MODAL */}
       <Modal
         isOpen={isAppointmentOpen}
         onClose={closeAppointment}
