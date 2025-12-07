@@ -4,6 +4,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useFavorites } from "../../context/FavoritesContext";
 import Modal from "../UI/Modal";
 import AppointmentForm from "../Appointment/AppointmentForm";
+import iziToast from "izitoast";
 
 export default function PsychologistCard({ psychologist }) {
   const { user } = useAuth();
@@ -30,17 +31,40 @@ export default function PsychologistCard({ psychologist }) {
 
   const handleHeartClick = () => {
     if (!user) {
-      alert("Only authorized users can manage favorites.");
+      iziToast.error({
+        title: "Unauthorized",
+        message: "Only authorized users can manage favorites.",
+        position: "topRight",
+      });
       return;
     }
+
     toggleFavorite(psychologist);
+
+    if (favorite) {
+      iziToast.info({
+        title: "Removed",
+        message: `${name} removed from favorites`,
+        position: "topRight",
+      });
+    } else {
+      iziToast.success({
+        title: "Added",
+        message: `${name} added to favorites`,
+        position: "topRight",
+      });
+    }
   };
 
   const toggleDetails = () => setIsExpanded((prev) => !prev);
 
   const openAppointment = () => {
     if (!user) {
-      alert("Only authorized users can make an appointment.");
+      iziToast.error({
+        title: "Unauthorized",
+        message: "Only authorized users can make an appointment.",
+        position: "topRight",
+      });
       return;
     }
     setIsAppointmentOpen(true);
@@ -53,7 +77,7 @@ export default function PsychologistCard({ psychologist }) {
       <article
         className={`${styles.card} ${isExpanded ? styles.cardExpanded : ""}`}
       >
-        {/* ÜST SATIR */}
+   
         <div className={styles.topRow}>
           <div className={styles.left}>
             <div className={styles.avatarWrapper}>
@@ -121,7 +145,7 @@ export default function PsychologistCard({ psychologist }) {
           </div>
         </div>
 
-        {/* KISA ABOUT */}
+    
         {about && <p className={styles.about}>{about}</p>}
 
         {/* READ MORE SONRASI */}
@@ -154,7 +178,7 @@ export default function PsychologistCard({ psychologist }) {
               ))}
             </ul>
 
-            {/* YORUMLARIN ALTINA ALINAN BUTON */}
+            {/* YORUMLARIN ALTINA BUTON */}
             <button
               className={styles.appointmentBtn}
               type="button"

@@ -49,7 +49,6 @@ export default function Psychologists() {
   }, []);
 
   const handleLoadMore = async () => {
-    await loadPsychologists(); 
     setVisibleCount((prev) => prev + 3);
   };
 
