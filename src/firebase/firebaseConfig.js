@@ -3,15 +3,18 @@ import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDTWRRD22xIVq4N8yvZDXG69OeZe8ODWSc",
-  authDomain: "psychologists-app-f4461.firebaseapp.com",
-  databaseURL:
-    "https://psychologists-app-f4461-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "psychologists-app-f4461",
-  storageBucket: "psychologists-app-f4461.firebasestorage.app",
-  messagingSenderId: "924615593222",
-  appId: "1:924615593222:web:348da399d247bd17686287",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
+
+if (!firebaseConfig.apiKey) {
+  throw new Error("Firebase API key not found! Check your .env file.");
+}
 
 const app = initializeApp(firebaseConfig);
 
