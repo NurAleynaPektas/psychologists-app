@@ -1,16 +1,83 @@
-# React + Vite
+Psychologists Services — React + Firebase Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Psychologists Services, kullanıcıların psikolog profillerini görüntüleyebildiği, favorilere ekleyebildiği, sıralayabildiği ve psikologlarla görüşme talebi oluşturabildiği modern bir web uygulamasıdır.
+Proje, verilen teknik şartnameye uygun olarak React, Firebase Authentication, Firebase Realtime Database ve CSS Modules kullanılarak geliştirilmiştir.
 
-Currently, two official plugins are available:
+Home Page:
+-Şirket sloganı, hero alanı ve “Get started” CTA butonu içerir.
+-Kullanıcıyı “Psychologists” sayfasına yönlendirir.
+-3 farklı renk temasını destekler (Orange, Blue, Green).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Psychologists Page:
+-Firebase Realtime Database’ten dinamik olarak psikolog verileri çekilir.
+-Kartlarda şu bilgiler görüntülenir:
+ avatar_url, name, experience, rating, price_per_hour, specialization, license,  initial_consultation, about
+-Sıralama seçenekleri (A–Z, Z–A, fiyat ve popülerlik) desteklenir.
+-İlk 3 kart görüntülenir; “Load more” ile ek kartlar yüklenebilir.
+-“Read more” → ekstra bilgiler ve müşteri yorumları açılır.
+-“Make an appointment” → form içeren modal açılır.
 
-## React Compiler
+Favorites Page:
+-Kullanıcının favorilere eklediği tüm psikologlar gösterilir.
+-Kart tasarımı Psychologists sayfasıyla birebir aynıdır.
+-Favoriler localStorage üzerinden kalıcıdır.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Favorites Button Behavior:
+-Yetkisiz kullanıcı tıklarsa uyarı gösterilir.
+-Giriş yapan kullanıcı favori ekleyebilir/kaldırabilir.
+-Sayfa yenilense bile favori durumu korunur.
 
-## Expanding the ESLint configuration
+Firebase Authentication:
+-Email + Password ile:
+Register
+Login
+Current user state
+Logout
+-React-hook-form + yup ile alan doğrulaması yapılmaktadır.
+-Modal: ESC, backdrop ve X ile kapanabilir.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Appointment Form:
+-React-hook-form + yup doğrulamalı form içerir.
+-Alanlar: name, email, phone, comment.
+-Modal olarak açılır ve başarı sonrası kapanır.
+
+
+
+Technologies:
+-React (Vite)
+-React Router
+-CSS Modules
+-Firebase Authentication
+-Firebase Realtime Database
+-React Hook Form
+-Yup
+-LocalStorage
+-Modern responsive CSS
+
+
+src/
+│── assets/
+│── components/
+│   ├── Header/
+│   ├── PsychologistCard/
+│   ├── UI/Modal/
+│   └── Appointment/
+│── context/
+│── firebase/
+│── pages/
+│   ├── Home/
+│   ├── Psychologists/
+│   └── Favorites/
+│── styles/
+│── App.jsx
+│── main.jsx
+
+
+
+Developer
+
+Nur Aleyna Pektaş
+Frontend Developer — React & Firebase
+🔗 LinkedIn: https://www.linkedin.com/in/nur-aleyna-pekta%C5%9F-16b401332/
+
+
