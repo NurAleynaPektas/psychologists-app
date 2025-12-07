@@ -48,40 +48,38 @@ export default function RegisterForm({ onSubmit }) {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(submitHandler)}>
+      <p>
+        Thank you for your interest in our platform! In order to register, we
+        need some information. Please provide us with the following information.
+      </p>
       <div className={styles.field}>
-        <label className={styles.label} htmlFor="name">
-          Name
-        </label>
         <input
           id="name"
           type="text"
           className={styles.input}
+          placeholder="Name"
           {...register("name")}
         />
         {errors.name && <p className={styles.error}>{errors.name.message}</p>}
       </div>
 
       <div className={styles.field}>
-        <label className={styles.label} htmlFor="email">
-          Email
-        </label>
         <input
           id="email"
           type="email"
           className={styles.input}
+          placeholder="Email"
           {...register("email")}
         />
         {errors.email && <p className={styles.error}>{errors.email.message}</p>}
       </div>
 
       <div className={styles.field}>
-        <label className={styles.label} htmlFor="password">
-          Password
-        </label>
         <input
           id="password"
           type="password"
           className={styles.input}
+          placeholder="Password"
           {...register("password")}
         />
         {errors.password && (

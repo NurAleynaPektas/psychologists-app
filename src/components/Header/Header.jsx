@@ -258,7 +258,7 @@ export default function Header() {
         </div>
       )}
 
-      <Modal isOpen={modalType === "login"} onClose={closeModal} title="Log In">
+      <Modal isOpen={modalType === "login"} onClose={closeModal} title="Log In" >
         <LoginForm onSubmit={handleLoginSuccess} />
       </Modal>
 

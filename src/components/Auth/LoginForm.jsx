@@ -43,15 +43,17 @@ export default function LoginForm({ onSubmit }) {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(submitHandler)}>
+      <p>
+        Welcome back! Please enter your credentials to access your account and
+        continue your search for a psychologist.
+      </p>
       <div className={styles.field}>
-        <label className={styles.label} htmlFor="email">
-          Email
-        </label>
         <div className={styles.inputWrapper}>
           <input
             id="email"
             type="email"
             className={styles.input}
+            placeholder="Email"
             {...register("email")}
           />
         </div>
@@ -59,14 +61,12 @@ export default function LoginForm({ onSubmit }) {
       </div>
 
       <div className={styles.field}>
-        <label className={styles.label} htmlFor="password">
-          Password
-        </label>
         <div className={styles.inputWrapper}>
           <input
             id="password"
             type="password"
             className={styles.input}
+            placeholder="Password"
             {...register("password")}
           />
         </div>

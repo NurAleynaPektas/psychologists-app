@@ -32,8 +32,11 @@
 }
 
 .title {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 48px;
+  letter-spacing: -2%;
   margin: 0 0 16px;
-  font-size: 20px;
 }
 
 .body {
@@ -41,15 +44,13 @@
   color: var(--text-muted);
 }
 
-
 /*   TABLET - MOBİL  */
-
 
 @media (max-width: 768px) {
   .modal {
     max-width: 100%;
-    margin: 0 16px;           
-    padding: 20px 18px 16px;  
+    margin: 0 16px;
+    padding: 20px 18px 16px;
     border-radius: 20px;
   }
 
