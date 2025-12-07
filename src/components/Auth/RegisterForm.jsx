@@ -3,6 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import styles from "./AuthForm.module.css";
 import { registerUser } from "../../firebase/authService";
+import iziToast from "izitoast";
 
 const registerSchema = yup.object({
   name: yup
@@ -23,6 +24,7 @@ export default function RegisterForm({ onSubmit }) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(registerSchema),
@@ -38,13 +40,27 @@ export default function RegisterForm({ onSubmit }) {
       const user = await registerUser(data);
       console.log("Registered:", user);
 
+     
+      iziToast.success({
+        title: "Welcome 🎉",
+        message: "Your account has been created successfully.",
+        position: "topRight",
+      });
+
+      reset(); 
+
       if (onSubmit) onSubmit(user);
     } catch (error) {
       console.error(error);
-      alert("Registration failed: " + error.message);
+
+   
+      iziToast.error({
+        title: "Registration failed",
+        message: error.message || "Something went wrong. Please try again.",
+        position: "topRight",
+      });
     }
   };
-
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(submitHandler)}>
@@ -52,6 +68,7 @@ export default function RegisterForm({ onSubmit }) {
         Thank you for your interest in our platform! In order to register, we
         need some information. Please provide us with the following information.
       </p>
+
       <div className={styles.field}>
         <input
           id="name"

@@ -7,6 +7,7 @@ import "./styles/variables.css";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { FavoritesProvider } from "./context/FavoritesContext.jsx";
 import { ThemeProvider } from "./context/ThemeContext.jsx";
+import "izitoast/dist/css/iziToast.min.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 

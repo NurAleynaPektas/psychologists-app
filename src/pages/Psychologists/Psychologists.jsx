@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import styles from "./Psychologists.module.css";
 import { fetchPsychologists } from "../../firebase/psychologistsService";
 import PsychologistCard from "../../components/PsychologistCard/PsychologistCard";
+import iziToast from "izitoast";
 
 export default function Psychologists() {
   const [psychologists, setPsychologists] = useState([]);

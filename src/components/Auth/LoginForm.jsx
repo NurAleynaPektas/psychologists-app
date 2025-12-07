@@ -3,6 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import styles from "./AuthForm.module.css";
 import { loginUser } from "../../firebase/authService";
+import iziToast from "izitoast";
 
 const loginSchema = yup.object({
   email: yup
@@ -33,13 +34,26 @@ export default function LoginForm({ onSubmit }) {
       const user = await loginUser(data);
       console.log("Logged in:", user);
 
-      if (onSubmit) onSubmit(user);
+      
+      iziToast.success({
+        title: "Success",
+        message: "You have logged in successfully.",
+        position: "topRight",
+      });
+
+      if (onSubmit) onSubmit(user); 
     } catch (error) {
       console.error(error);
-      alert("Login failed: " + error.message);
+
+      
+      iziToast.error({
+        title: "Login failed",
+        message: error.message || "Something went wrong. Please try again.",
+        position: "topRight",
+      });
+     
     }
   };
-
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(submitHandler)}>
@@ -47,6 +61,7 @@ export default function LoginForm({ onSubmit }) {
         Welcome back! Please enter your credentials to access your account and
         continue your search for a psychologist.
       </p>
+
       <div className={styles.field}>
         <div className={styles.inputWrapper}>
           <input

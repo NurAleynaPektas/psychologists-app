@@ -3,6 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import styles from "../Auth/AuthForm.module.css";
 import { useAuth } from "../../context/AuthContext";
+import iziToast from "izitoast";
 
 const schema = yup.object({
   name: yup
@@ -44,17 +45,37 @@ export default function AppointmentForm({ psychologist, onSuccess }) {
   });
 
   const submitHandler = async (data) => {
-    console.log("Appointment request:", {
-      ...data,
-      psychologistName: psychologist?.name,
-    });
+    try {
+      console.log("Appointment request:", {
+        ...data,
+        psychologistName: psychologist?.name,
+      });
 
-    await new Promise((resolve) => setTimeout(resolve, 500));
+      await new Promise((resolve) => setTimeout(resolve, 500));
 
-    alert("Your appointment request has been sent.");
-    reset();
+    
+      iziToast.success({
+        title: "Request sent",
+        message: `Your appointment request with ${
+          psychologist?.name || "the psychologist"
+        } has been sent.`,
+        position: "topRight",
+      });
 
-    if (onSuccess) onSuccess();
+      reset();
+
+      if (onSuccess) onSuccess(); 
+    } catch (error) {
+      console.error(error);
+
+      iziToast.error({
+        title: "Something went wrong",
+        message:
+          error.message ||
+          "Could not send your appointment request. Please try again.",
+        position: "topRight",
+      });
+    }
   };
 
   return (
@@ -94,7 +115,7 @@ export default function AppointmentForm({ psychologist, onSuccess }) {
         {errors.name && <p className={styles.error}>{errors.name.message}</p>}
       </div>
 
-      {/* PHONE  */}
+      {/* PHONE & TIME */}
       <div className={styles.inlineRow}>
         <div className={styles.field}>
           <label className={styles.label} htmlFor="phone">
