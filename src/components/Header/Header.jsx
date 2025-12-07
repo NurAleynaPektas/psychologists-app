@@ -80,13 +80,16 @@ export default function Header() {
             Psychologists
           </NavLink>
 
-          <NavLink
-            to="/favorites"
-            onClick={closeMenu}
-            className={({ isActive }) => (isActive ? styles.activeLink : "")}
-          >
-            Favorites
-          </NavLink>
+          {/* SADECE LOGIN OLUNCA GÖRÜNSÜN */}
+          {user && (
+            <NavLink
+              to="/favorites"
+              onClick={closeMenu}
+              className={({ isActive }) => (isActive ? styles.activeLink : "")}
+            >
+              Favorites
+            </NavLink>
+          )}
         </nav>
 
         {/* DESKTOP ACTIONS */}
@@ -187,13 +190,16 @@ export default function Header() {
                 Psychologists
               </NavLink>
 
-              <NavLink
-                to="/favorites"
-                onClick={closeMenu}
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                Favorites
-              </NavLink>
+              {/* MOBİLDE DE SADECE LOGIN OLUNCA GÖRÜNSÜN */}
+              {user && (
+                <NavLink
+                  to="/favorites"
+                  onClick={closeMenu}
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
+                  Favorites
+                </NavLink>
+              )}
             </nav>
 
             <div className={styles.mobileActions}>
@@ -258,7 +264,7 @@ export default function Header() {
         </div>
       )}
 
-      <Modal isOpen={modalType === "login"} onClose={closeModal} title="Log In" >
+      <Modal isOpen={modalType === "login"} onClose={closeModal} title="Log In">
         <LoginForm onSubmit={handleLoginSuccess} />
       </Modal>
 
